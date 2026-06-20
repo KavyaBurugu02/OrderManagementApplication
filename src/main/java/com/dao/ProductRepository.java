@@ -3,11 +3,14 @@ package com.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.dto.ProductResponseDto;
 import com.model.Product;
+
+import jakarta.transaction.Transactional;
 
 public interface ProductRepository extends JpaRepository<Product, Long>{
 	
@@ -18,5 +21,11 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	
 //	@Query("update Product p set p.rating=:rating where p.productId=:id")
 //	Product updateById(@Param("id") long id,@Param("rating") double rating);
+	
+
+	@Query("update Product p set p.stock=:stock where p.productId=:productId")
+	@Modifying
+	@Transactional
+	int updateStock(long productId,int stock);
 
 }

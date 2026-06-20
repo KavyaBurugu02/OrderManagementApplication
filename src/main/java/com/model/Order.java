@@ -26,8 +26,7 @@ public class Order {
 	
 	private String status;
 	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)	
 	List<OrderItems> orderItems;
 
 	public Order(String status, List<OrderItems> orderItems) {
